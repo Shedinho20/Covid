@@ -46,7 +46,7 @@ body {
 }
 
 .container {
-    padding: 1em;
+    padding: 1em 0.5em;
 }
 
 /* //header==--*/
@@ -159,6 +159,7 @@ body {
     padding: 0.8em;
 }
 .tableinner th {
+    position: sticky;
     top: 0;
     font-size: 0.8rem;
     font-weight: 800;
@@ -168,11 +169,6 @@ body {
 
 .tableinner tr:nth-child(even) {
     background-color: #f2f2f2;
-}
-
-#sticky {
-    position: sticky;
-    top: 0;
 }
 
 @media (max-width: 1000px) {

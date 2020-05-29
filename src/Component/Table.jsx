@@ -22,27 +22,21 @@ class Table extends React.Component {
         });
     };
 
-    Tableheader = () => {
-        return (
-            <tr>
-                <th className="id">ID</th>
-                <th>Country</th>
-                <th>Totalconfirmed</th>
-                <th>Newcase</th>
-                <th>Newdeaths</th>
-                <th>Totalrecovered</th>
-                <th>Totaldeaths</th>
-            </tr>
-        );
-    };
-
     render() {
         if (this.props.countrys.length > 1) {
             return (
                 <div className="table" id="sticky">
                     <table className="tableinner">
                         <tbody>
-                            {this.Tableheader()}
+                            <tr>
+                                <th className="id">ID</th>
+                                <th>Country</th>
+                                <th>Totalconfirmed</th>
+                                <th>Newcase</th>
+                                <th>Newdeaths</th>
+                                <th>Totalrecovered</th>
+                                <th>Totaldeaths</th>
+                            </tr>{" "}
                             {this.Tablebody(this.props.countrys)}
                         </tbody>
                     </table>
