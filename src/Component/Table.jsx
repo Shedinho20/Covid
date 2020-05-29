@@ -10,7 +10,7 @@ class Table extends React.Component {
             const { Country, Newcase, Newdeaths, Totalconfirmed, Totalrecovered, day, Totaldeaths } = country;
             return (
                 <tr key={index}>
-                    <td>{index + 1}</td>
+                    <td className="id">{index + 1}</td>
                     <td>{Country}</td>
                     <td>{Totalconfirmed}</td>
                     <td>{Newcase ? Newcase : 0}</td>
@@ -23,13 +23,17 @@ class Table extends React.Component {
     };
 
     Tableheader = () => {
-        return this.state.TableHeader.map((header, index) => {
-            return (
-                <th key={index} id="sticky">
-                    {header.toUpperCase()}
-                </th>
-            );
-        });
+        return (
+            <tr>
+                <th className="id">ID</th>
+                <th>Country</th>
+                <th>Totalconfirmed</th>
+                <th>Newcase</th>
+                <th>Newdeaths</th>
+                <th>Totalrecovered</th>
+                <th>Totaldeaths</th>
+            </tr>
+        );
     };
 
     render() {
@@ -38,7 +42,7 @@ class Table extends React.Component {
                 <div className="table" id="sticky">
                     <table className="tableinner">
                         <tbody>
-                            <tr>{this.Tableheader()}</tr>
+                            {this.Tableheader()}
                             {this.Tablebody(this.props.countrys)}
                         </tbody>
                     </table>
