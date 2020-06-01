@@ -15,8 +15,37 @@ class App extends React.Component {
         const data = await gobalData();
         this.setState({ data });
         const countrys = await country();
-        this.setState({ countrys });
+        const sortedData = [...countrys].sort((a, b) => {
+            return b.Totalconfirmed - a.Totalconfirmed;
+        });
+        this.Filter(sortedData);
     }
+
+    Filter = (sortedData) => {
+        const filteredCountries = [...sortedData].filter((element) => {
+            return (
+                element.Country != "All" &&
+                element.Country != "North-America" &&
+                element.Country != "South-America" &&
+                element.Country != "Europe" &&
+                element.Country != "Africa" &&
+                element.Country != "Asia"
+            );
+        });
+        console.log(filteredCountries);
+        this.setState({ countrys: filteredCountries });
+    };
+
+    // sortedData = () => {
+    //     const sortedData = [...this.state.countrys].sort((a, b) => {
+    //         if (a.Country < b.Country) {
+    //             return -1;
+    //         } else if (a.Country > b.Country) {
+    //             return 1;
+    //         } else return 0;
+    //     });
+    //     this.Filter(sortedData);
+    // };
 
     render() {
         return (
@@ -31,7 +60,7 @@ class App extends React.Component {
                     </div>
                     <Header location="Surveillance table" />
                     <div className="container">
-                        <Table countrys={this.state.countrys} />
+                        <Table countrys={this.state.countrys} sortedData={this.sortedData} />
                     </div>
                 </div>
             </div>

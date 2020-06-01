@@ -140,14 +140,12 @@ body {
 }
 
 .table {
-    overflow-x: auto;
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
 }
 .tableinner {
-    /* overflow: scroll; */
     width: 100%;
     border-collapse: collapse;
     border: 2px solid #ddd;
@@ -159,13 +157,18 @@ body {
     padding: 0.8em;
 }
 .tableinner th {
-    position: sticky;
-    top: 0;
     font-size: 0.8rem;
     font-weight: 800;
     background-color: var(--mainBlue);
     color: var(--mainWhite);
+    position: sticky;
+    top: 0;
+    /* cursor: pointer; */
 }
+
+/* .tableinner th:hover {
+    background-color: var(--secBlue);
+} */
 
 .tableinner tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -182,8 +185,6 @@ body {
     }
     .tableinner th {
         padding: 1em 0.3em;
-    }
-    .tableinner td {
     }
     .id {
         display: none;

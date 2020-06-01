@@ -3,6 +3,7 @@ import React from "react";
 class Table extends React.Component {
     state = {
         TableHeader: ["ID", "Country", "Totalconfirmed", "Newcase", "Newdeaths", "Totalrecovered", "Totaldeaths"],
+        color: false,
     };
 
     Tablebody = (countrys) => {
@@ -21,6 +22,17 @@ class Table extends React.Component {
             );
         });
     };
+    style = () => {
+        this.setState({ color: true });
+    };
+
+    getstyle = () => {
+        if (this.color) {
+            return {
+                backgroundColor: "a7b7fd !important",
+            };
+        }
+    };
 
     render() {
         if (this.props.countrys.length > 1) {
@@ -30,12 +42,13 @@ class Table extends React.Component {
                         <tbody>
                             <tr>
                                 <th className="id">ID</th>
+                                {/* <th onClick={() => this.props.sortedData("Totalconfirmed")}>Country</th> */}
                                 <th>Country</th>
-                                <th>Totalconfirmed</th>
-                                <th>Newcase</th>
-                                <th>Newdeaths</th>
-                                <th>Totalrecovered</th>
-                                <th>Totaldeaths</th>
+                                <th>Total confirmed</th>
+                                <th>New cases</th>
+                                <th>New deaths</th>
+                                <th>Total recovered</th>
+                                <th>Total deaths</th>
                             </tr>{" "}
                             {this.Tablebody(this.props.countrys)}
                         </tbody>
