@@ -1,4 +1,5 @@
 import React from "react";
+import NumberFormat from "react-number-format";
 
 class Table extends React.Component {
     state = {
@@ -9,15 +10,29 @@ class Table extends React.Component {
     Tablebody = (countrys) => {
         return countrys.map((country, index) => {
             const { Country, Newcase, Newdeaths, Totalconfirmed, Totalrecovered, day, Totaldeaths } = country;
+
             return (
                 <tr key={index}>
                     <td className="id">{index + 1}</td>
                     <td>{Country}</td>
-                    <td>{Totalconfirmed}</td>
-                    <td>{Newcase ? Newcase : 0}</td>
-                    <td>{Newdeaths ? Newdeaths : 0}</td>
-                    <td>{Totalrecovered}</td>
-                    <td>{Totaldeaths}</td>
+                    <td>
+                        <NumberFormat value={Totalconfirmed} displayType={"text"} thousandSeparator={true} />
+                    </td>
+                    <td>
+                        <NumberFormat value={Newcase ? Newcase : 0} displayType={"text"} thousandSeparator={true} />
+                    </td>
+                    <td>
+                        {" "}
+                        <NumberFormat value={Newdeaths ? Newdeaths : 0} displayType={"text"} thousandSeparator={true} />
+                    </td>
+                    <td>
+                        {" "}
+                        <NumberFormat value={Totalrecovered} displayType={"text"} thousandSeparator={true} />
+                    </td>
+                    <td>
+                        {" "}
+                        <NumberFormat value={Totaldeaths} displayType={"text"} thousandSeparator={true} />
+                    </td>
                 </tr>
             );
         });

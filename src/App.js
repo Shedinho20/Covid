@@ -1,14 +1,18 @@
 import React from "react";
 import "./App.css";
 
-import { gobalData, country } from "./API";
+import { gobalData, country, countries, specCountry } from "./API";
 import Header from "./Component/Header";
 import CardActive from "./Component/CardActive";
 import Table from "./Component/Table";
+import Option from "./Component/Option";
 class App extends React.Component {
     state = {
         data: {},
         countrys: "",
+        option: "",
+        defaultValue: { label: "Global", value: "Global" },
+        location: "Global",
     };
 
     async componentDidMount() {
@@ -18,6 +22,8 @@ class App extends React.Component {
         const sortedData = [...countrys].sort((a, b) => {
             return b.Totalconfirmed - a.Totalconfirmed;
         });
+        const option = await countries();
+        this.setState({ option });
         this.Filter(sortedData);
     }
 
@@ -32,35 +38,37 @@ class App extends React.Component {
                 element.Country != "Asia"
             );
         });
-        console.log(filteredCountries);
         this.setState({ countrys: filteredCountries });
     };
 
-    // sortedData = () => {
-    //     const sortedData = [...this.state.countrys].sort((a, b) => {
-    //         if (a.Country < b.Country) {
-    //             return -1;
-    //         } else if (a.Country > b.Country) {
-    //             return 1;
-    //         } else return 0;
-    //     });
-    //     this.Filter(sortedData);
-    // };
+    onChange = async (value) => {
+        this.setState({ location: value.value });
+        const data = await specCountry(value.value);
+        this.setState({ data });
+    };
 
     render() {
         return (
             <div className="App-bg">
                 {/* <div className="map">Map</div> */}
                 <div className="info ">
-                    <Header location="worldwide" data={this.state.data} />
+                    <Header location={this.state.location} data={this.state.data} />
+                    <div className="option">
+                        <Option
+                            option={this.state.option}
+                            defaultValue={this.state.defaultValue}
+                            onChange={this.onChange}
+                        />
+                    </div>
+
                     <div className="containerCards">
                         <CardActive name="Total Cases" data={this.state.data} />
                         <div className="cardLine" />
                         <CardActive name="Closed Cases" data={this.state.data} />
                     </div>
-                    <Header location="Surveillance table" />
+                    <Header location="Surveillance table" data={this.state.data} />
                     <div className="container">
-                        <Table countrys={this.state.countrys} sortedData={this.sortedData} />
+                        <Table countrys={this.state.countrys} />
                     </div>
                 </div>
             </div>

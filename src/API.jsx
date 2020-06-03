@@ -9,7 +9,6 @@ export const gobalData = async () => {
         const {
             data: { confirmed, recovered, deaths, lastUpdate },
         } = await axios(url);
-        const { data } = await axios(url);
         const requiredData = { confirmed, recovered, deaths, lastUpdate };
         return requiredData;
     } catch (error) {}
@@ -38,5 +37,29 @@ export const country = async () => {
             Newdeaths: country.deaths.new,
         }));
         return requiredDatas;
+    } catch (error) {}
+};
+
+export const countries = async () => {
+    try {
+        const { data } = await axios(`${url}/countries`);
+        const requiredDatas = data.countries.map((country) => ({
+            label: country.name,
+            value: country.name,
+        }));
+        requiredDatas.unshift({ label: "Global", value: "Global" });
+        return requiredDatas;
+    } catch (error) {}
+};
+
+export const specCountry = async (country) => {
+    let newUrl = `${url}/countries/${country}`;
+    try {
+        const {
+            data: { confirmed, recovered, deaths, lastUpdate },
+        } = await axios(newUrl);
+        const requiredData = { confirmed, recovered, deaths, lastUpdate };
+        console.log(requiredData);
+        return requiredData;
     } catch (error) {}
 };

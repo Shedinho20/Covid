@@ -4,7 +4,7 @@ import CardFooter from "./Cardfooter";
 import Chart from "./Chart";
 import CountUp from "react-countup";
 
-const Card = ({ name, data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Card = ({ name, data: { confirmed, recovered, deaths } }) => {
     if (confirmed && name == "Total Cases") {
         const active = confirmed.value - (recovered.value + deaths.value);
         const style = {
