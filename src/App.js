@@ -42,9 +42,14 @@ class App extends React.Component {
     };
 
     onChange = async (value) => {
-        this.setState({ location: value.value });
-        const data = await specCountry(value.value);
-        this.setState({ data });
+        if (value.value === "Global") {
+            const data = await gobalData();
+            this.setState({ data });
+        } else {
+            this.setState({ location: value.value });
+            const data = await specCountry(value.value);
+            this.setState({ data });
+        }
     };
 
     render() {
