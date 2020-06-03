@@ -59,9 +59,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 2;
+}
+
+.header i {
+    font-size: 2rem;
 }
 .header2 {
     border-bottom: var(--mainlines) 1px solid;

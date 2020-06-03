@@ -11,7 +11,7 @@ const Header = ({ location, data: { lastUpdate } }) => {
     return (
         <div className="header">
             <h2>
-                COVID 19 <span className="textGrey">{location}</span>{" "}
+                C<i className="fas fa-virus"></i>VID19 <span className="textGrey">{location}</span>{" "}
             </h2>
             <div id="updated">{new Date(lastUpdate).toDateString()}</div>
         </div>
