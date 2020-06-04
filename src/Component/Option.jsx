@@ -7,7 +7,7 @@ const Option = ({ option, defaultValue, onChange }) => {
             <Select
                 options={option}
                 className="width"
-                isSearchable={false}
+                isSearchable={true}
                 defaultValue={defaultValue}
                 onChange={onChange}
             />
