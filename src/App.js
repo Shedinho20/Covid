@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Loader from "react-loader-spinner";
 
 import { gobalData, country, countries, specCountry } from "./API";
 import Header from "./Component/Header";
@@ -53,31 +54,46 @@ class App extends React.Component {
     };
 
     render() {
-        return (
-            <div className="App-bg">
-                {/* <div className="map">Map</div> */}
-                <div className="info ">
-                    <Header location={this.state.location} data={this.state.data} />
-                    <div className="option">
-                        <Option
-                            option={this.state.option}
-                            defaultValue={this.state.defaultValue}
-                            onChange={this.onChange}
-                        />
-                    </div>
+        console.log(this.state.data);
+        if (this.state.countrys.length > 1) {
+            return (
+                <div className="App-bg">
+                    {/* <div className="map">Map</div> */}
+                    <div className="info ">
+                        <Header location={this.state.location} data={this.state.data} />
+                        <div className="option">
+                            <Option
+                                option={this.state.option}
+                                defaultValue={this.state.defaultValue}
+                                onChange={this.onChange}
+                            />
+                        </div>
 
-                    <div className="containerCards">
-                        <CardActive name="Total Cases" data={this.state.data} />
-                        <div className="cardLine" />
-                        <CardActive name="Closed Cases" data={this.state.data} />
-                    </div>
-                    <Header location="Surveillance table" data={this.state.data} />
-                    <div className="container">
-                        <Table countrys={this.state.countrys} />
+                        <div className="containerCards">
+                            <CardActive name="Total Cases" data={this.state.data} />
+                            <div className="cardLine" />
+                            <CardActive name="Closed Cases" data={this.state.data} />
+                        </div>
+                        <Header location="Surveillance table" data={this.state.data} />
+                        <div className="container">
+                            <Table countrys={this.state.countrys} />
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div className="loader">
+                    <Loader
+                        type="Oval"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                        timeout={3000} //3 secs
+                    />
+                </div>
+            );
+        }
     }
 }
 
